@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<style>
+			img {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+}
+    h1 {
+    	color:#ff1a1a;
+    	text-align: center;
+    	font-size:50px;
+    }
+
+    body{
+    	background-color:black;
+    }
+
+    p {
+    	color:#FFC300;
+    	text-align:center;
+    	font-size:20px;
+    }
+	</style>
+
+</head>
+<body>
+             <h1>Welcome to VUE Presentation</h1><br><br><br>
+  <img src="img/A3.png"/><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <h1>What is Vue?</h1> 
+  <p>Vue is a <strong>progressive framework</strong> for building user interfaces.</p><br><br>
+<h1>We are going to talk on <strong>V-for</strong> and <strong>V-if</strong></h1><br><br>
+  <div id="todo-list-example">
+  <input
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+  >
+  <ul>
+    <li
+      is="todo-item"
+      v-for="(todo, index) in todos"
+      v-bind:key="todo"
+      v-bind:title="todo"
+      v-on:remove="todos.splice(index, 1)"
+    ></li>
+  </ul>
+</div>
+
+
+  
+    
+   <script src="https://unpkg.com/vue"></script>
+   <script>
+      Vue.component('todo-item', {
+  template: `
+    <li>
+      {{ title }}
+      <button v-on:click="$emit('remove')">X</button>
+    </li>
+  `,
+  props: ['title']
+})
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    newTodoText: '',
+    todos: [
+      'Do the dishes',
+      'Take out the trash',
+      'Mow the lawn'
+    ]
+  },
+  methods: {
+    addNewTodo: function () {
+      this.todos.push(this.newTodoText)
+      this.newTodoText = ''
+    }
+  }
+})
+
+   </script>
+	
+</body>
+</html>
